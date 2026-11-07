@@ -1,0 +1,17 @@
+{
+  "name": "LifeSavers Healthcare",
+  "short_name": "LifeSavers",
+  "description": "On-demand, location-based healthcare marketplace connecting patients directly with verified local nurses, doctors, and specialists at your doorstep.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#01514B",
+  "theme_color": "#01514B",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./assets/lifesavers_logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}

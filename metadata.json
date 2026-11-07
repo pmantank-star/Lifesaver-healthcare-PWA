@@ -1,0 +1,6 @@
+{
+  "name": "LifeSavers Healthcare",
+  "description": "LifeSavers Healthcare - On-demand, location-based healthcare marketplace connecting patients directly with verified local nurses, doctors, and specialists at your doorstep.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Color Palette Scheme -->
+    <color name="forest_green">#FF01514B</color>
+    <color name="forest_green_dark">#FF003834</color>
+    <color name="amber_accent">#FFF59E0B</color>
+    <color name="warm_beige">#FFECDDCF</color>
+    <color name="ice_mint">#FFDBE9EB</color>
+    <color name="dark_charcoal">#FF1A2B29</color>
+    <color name="light_mint">#FFE6F0F0</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+
+    <!-- Legacy Material Colors -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF01514B</color>
+    <color name="purple_700">#FF003834</color>
+    <color name="teal_200">#FFF59E0B</color>
+    <color name="teal_700">#FF01514B</color>
+</resources>
