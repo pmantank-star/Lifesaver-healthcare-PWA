@@ -1,6 +1,7 @@
 const CACHE_NAME = 'lifesavers-v1';
 const ASSETS_TO_CACHE = [
   './index.html',
+  './app_embed.html',
   './manifest.json',
   './assets/lifesavers_logo.png'
 ];

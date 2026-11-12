@@ -152,10 +152,26 @@ object SupabaseConfig {
             updated_at TIMESTAMPTZ DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
         );
 
-        -- 4. Enable Row Level Security (RLS) with Public Anon Access
+        -- 4. Waitlist & Early Access Leads (Patients & Healthcare Specialists)
+        CREATE TABLE IF NOT EXISTS public.waitlist_leads (
+            id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+            full_name TEXT NOT NULL,
+            email TEXT NOT NULL,
+            phone TEXT NOT NULL,
+            city TEXT NOT NULL,
+            role TEXT NOT NULL CHECK (role IN ('PATIENT', 'PROVIDER')),
+            specialty TEXT,
+            license_number TEXT,
+            queue_number INT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'PENDING',
+            created_at TIMESTAMPTZ DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
+        );
+
+        -- 5. Enable Row Level Security (RLS) with Public Anon Access
         ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
         ALTER TABLE public.chat_messages ENABLE ROW LEVEL SECURITY;
         ALTER TABLE public.providers ENABLE ROW LEVEL SECURITY;
+        ALTER TABLE public.waitlist_leads ENABLE ROW LEVEL SECURITY;
 
         CREATE POLICY "Allow public read-write for bookings" ON public.bookings
             FOR ALL USING (true) WITH CHECK (true);
@@ -166,9 +182,16 @@ object SupabaseConfig {
         CREATE POLICY "Allow public read-write for providers" ON public.providers
             FOR ALL USING (true) WITH CHECK (true);
 
-        -- 5. Enable Supabase Realtime Publication
+        CREATE POLICY "Allow public insert for waitlist_leads" ON public.waitlist_leads
+            FOR INSERT WITH CHECK (true);
+
+        CREATE POLICY "Allow public select for waitlist_leads" ON public.waitlist_leads
+            FOR SELECT USING (true);
+
+        -- 6. Enable Supabase Realtime Publication
         ALTER PUBLICATION supabase_realtime ADD TABLE public.bookings;
         ALTER PUBLICATION supabase_realtime ADD TABLE public.chat_messages;
         ALTER PUBLICATION supabase_realtime ADD TABLE public.providers;
+        ALTER PUBLICATION supabase_realtime ADD TABLE public.waitlist_leads;
     """.trimIndent()
 }

@@ -1,39 +1,53 @@
-# LifeSavers Healthcare — Web App (Progressive Web Application)
+# LifeSavers Healthcare — Web App (PWA) Deployment Guide
 
-This is the interactive, app-like Web edition of **LifeSavers Healthcare**, created to meet tight client deadlines while delivering a mobile-native feel on both phones and desktops.
-
----
-
-## 🌟 Key Features
-- **App-Like Native Feel**:
-  - Full-viewport responsive shell that behaves like a native app on mobile (edge-to-edge, status bar theming).
-  - Elegant smartphone preview frame on desktop displays.
-  - Native touch interactions, bottom sheets, and toast notifications.
-  - Installable as a Progressive Web App (PWA) with "Add to Home Screen" support.
-- **Doorstep Provider Radar**:
-  - Real-time GPS distance calculation and animated radar blips for nearby verified health workers.
-- **9 Specialized Healthcare Categories**:
-  - Registered Nurse, Online Doctor, Child Caregiver, Elderly Caregiver, Physiotherapist, Mental Health Counselor, Community Health Worker (CHW), Primary Health Worker (PHW), and Sexual & Reproductive Health Specialist.
-- **Provider Search & Multi-Criteria Filtering**:
-  - Filter simultaneously by **Specialty**, **Distance (1km, 2km, 5km)**, and **Availability (Online / 100% Verified)**.
-- **Live Dispatch Status Progression**:
-  - Real-time tracking stepper: `Matched` ➔ `En Route` ➔ `Arrived` ➔ `Completed` / `Cancelled`.
-- **Verified Reviews & Doctor Testimonials**:
-  - 5-star clinical ratings, compliment badges (*Punctual Arrival*, *Hospital-Grade Hygiene*), and interactive review publishing.
-- **FemTech & Maternal Health Suite**:
-  - Dedicated postnatal midwife dispatch, reproductive consultation, and confidential screening.
+This folder contains the complete, standalone Web Application for **LifeSavers Healthcare**.
 
 ---
 
-## 🚀 How to Deploy in 30 Seconds
+## 📁 What Files Do You Need to Upload?
 
-### Option 1: GitHub Pages (Free, Zero Config)
-1. In your GitHub repository (`LifeSaversHealthCare`), go to **Settings** > **Pages**.
-2. Under **Build and deployment** > **Branch**, select `master` (or `main`) and the `/web` folder (or deploy from a `gh-pages` branch).
-3. Click **Save**. Your client will get an instant live HTTPS link!
+When deploying to a live domain or hosting server, you only need the **production web files**:
 
-### Option 2: Vercel / Netlify (Recommended for Instant Client Demo)
-1. Go to [vercel.com](https://vercel.com) or [netlify.com](https://netlify.com).
-2. Click **Add New Project** and connect your GitHub repo (`LifeSaversHealthCare`).
-3. Set the **Root Directory** to `web`.
-4. Click **Deploy**. In under 20 seconds, your client has a custom URL!
+| File / Folder | Needed on Live Server? | Purpose |
+| :--- | :---: | :--- |
+| **`index.html`** | **YES (Required)** | The entire application (HTML, CSS, JS, and all embedded images). |
+| **`manifest.json`** | **YES (Recommended)** | Enables Progressive Web App (PWA) support ("Add to Home Screen"). |
+| **`sw.js`** | **YES (Recommended)** | Service worker for offline caching and fast asset delivery. |
+| **`assets/`** | **YES** | Contains `lifesavers_logo.png` (app icon for home screens). |
+| `build_full_web.py` | *NO (Optional)* | Generator script used to compile the standalone HTML. Safe to omit. |
+| `README.md` | *NO (Optional)* | Documentation. Safe to omit. |
+
+> **Note**: Even if you upload **only `index.html`**, the entire application works 100% because all images, icons, and stylesheets are self-contained. Adding `manifest.json`, `sw.js`, and `assets/` makes it installable as a mobile app directly from the browser.
+
+---
+
+## 🚀 3 Ways to Put It on a Live Domain
+
+### Method 1: Netlify Drop / Vercel (Fastest — 30 Seconds, Free)
+1. Go to [app.netlify.com/drop](https://app.netlify.com/drop) or [vercel.com/new](https://vercel.com/new).
+2. Drag and drop the `web` folder into the browser window.
+3. Your site is instantly live with free HTTPS (e.g., `lifesavers-healthcare.netlify.app`).
+4. To connect your custom domain (e.g., `app.lifesavershealthcare.org`):
+   - Go to **Domain Management** in Netlify/Vercel and add your domain.
+
+---
+
+### Method 2: cPanel / Traditional Web Hosting
+1. Log into your cPanel or FTP account.
+2. Open **File Manager** and navigate to your `public_html` directory (or subdomain folder).
+3. Upload:
+   - `index.html`
+   - `manifest.json`
+   - `sw.js`
+   - `assets/` folder
+4. Visit your domain (e.g., `https://yourdomain.com`) — the app will load immediately.
+
+---
+
+### Method 3: GitHub Pages (Directly from Repo)
+1. In your GitHub repository (`pmantank-star/LifeSaversHealthCare`):
+2. Go to **Settings** > **Pages**.
+3. Under **Build and deployment** > **Branch**:
+   - Select your main branch.
+   - Set the folder dropdown to `/web`.
+4. Click **Save**. GitHub will publish your live website at `https://<username>.github.io/<repo-name>/`.
